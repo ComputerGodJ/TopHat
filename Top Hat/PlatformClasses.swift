@@ -29,3 +29,35 @@ class BasicPlatform: Platform {
         return 1
     }
 }
+
+class DummyPlatform: Platform {
+    override var pointValue: Int {
+        return 6
+    }
+}
+
+class CloudPlatform: DummyPlatform {
+    override var pointValue: Int {
+        return 5
+    }
+}
+
+class FragilePlatform: Platform {
+    private var pointsAwarded = false
+    private var timeAtTouch: Date?
+    var timeSinceTouch: TimeInterval {
+        return -(timeAtTouch?.timeIntervalSinceNow)!
+    }
+    override var pointValue: Int {
+        return 3
+    }
+    
+    override func hasBeenTouched() -> Int {
+        if !pointsAwarded {
+            timeAtTouch = Date()
+            pointsAwarded = true
+            return pointValue
+        }
+        return 0
+    }
+}

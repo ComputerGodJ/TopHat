@@ -13,11 +13,11 @@ enum PowerupEffect {
     case null //Exists for initialisation purposes
     case coin(Int)
     case xpBoost(Int)
-    case platformSpeed(Int)
+    case platformSpeed(TimeInterval)
     case pointsBoost(Int)
-    case xpMod(Float)
-    case scoreMod(Float)
-    case coinMod(Float)
+    case xpMod(Double)
+    case scoreMod(Double)
+    case coinMod(Double)
     case coinBoost(Int)
 }
 

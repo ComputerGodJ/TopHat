@@ -11,6 +11,7 @@ import UIKit
 class PostGameController: UIViewController {
     
     var collectedCoins = 0
+    var points = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +29,16 @@ class PostGameController: UIViewController {
             mainMenuButton.titleLabel?.font = newFont
             coinLabel.font = newFont
             topTextLabel.font = newFont
+            scoreLabel.font = newFont
         }
         
         //Set text
         coinLabel.text = "Coins collected: " + String(collectedCoins)
+        scoreLabel.text = "Points earned: " + String(points)
     }
     //Outlets
     @IBOutlet weak var mainMenuButton: UIButton!
     @IBOutlet weak var coinLabel: UILabel!
     @IBOutlet weak var topTextLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
 }

@@ -12,8 +12,10 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    var difficulty = String()
+    
     // Load the SKScene, which is an instance of GameScene
-    let scene = GameScene()
+    var scene: GameScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,26 +24,29 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name:NSNotification.Name.UIApplicationWillResignActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name:NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
+        scene = GameScene()
+        scene?.difficultyChoice = difficulty
+        
         if let view = self.view as! SKView? {
             // Set the scale mode
-            scene.scaleMode = .resizeFill
+            scene?.scaleMode = .resizeFill
             //Optimisation
             view.ignoresSiblingOrder = true
             //Show debug information
             view.showsFPS = true
             view.showsNodeCount = true
-            scene.gameVC = self
+            scene?.gameVC = self
             // Present the scene
             view.presentScene(scene)
         }
     }
     
     @objc func pauseGame() {
-        scene.isPaused = true
+        scene?.isPaused = true
     }
     
     @objc func resumeGame() {
-        scene.isPaused = false
+        scene?.isPaused = false
     }
 
     override var shouldAutorotate: Bool {
@@ -53,6 +58,7 @@ class GameViewController: UIViewController {
         if let postGameVC = destinationVC as? PostGameController {
             if let game = sender as? GameScene {
                 postGameVC.collectedCoins = game.collectedCoins
+                postGameVC.points = game.collectedPoints
             }
         }
     }

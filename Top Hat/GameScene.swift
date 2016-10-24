@@ -25,16 +25,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Gameplay variables
     var playing = true
     var collectedCoins = 0
+    var collectedPoints = 0
+    var collectedXp = 0
     var lives = 3
+    private var platformDifficulty = 0
+    private var sizeDifficulty = 0
+    private var scoreMod = 0.0
+    private var coinsMod = 0.0
+    private var xpMod = 0.0
     
-    //Constants set at instantiation
-    let difficultyTickLength: TimeInterval
-    let speedTickLength: TimeInterval
-    let platformTable: [Int]
-    let sizeTable: [Int]
-    let increaseCoinValueChance: Double
-    let maximumPlatformDifficulty: Int
-    let maximumSizeDifficulty: Int
+    //Values set at creation
+    var difficultyChoice = ""
+    var difficultyTickLength: TimeInterval = 0
+    var speedTickLength: TimeInterval = 0
+    var platformTable: [Int] = []
+    var sizeTable: [Int] = []
+    var increaseCoinValueChance: Double = 0
+    var maximumPlatformDifficulty: Int = 0
+    var maximumSizeDifficulty: Int = 0
     
     //Values used for game logic or scene
     private var viewHeight: CGFloat {
@@ -46,35 +54,66 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerSpawn: CGPoint {
         return CGPoint(x: size.width/2, y: size.height*0.9)
     }
+    private var currentScore: Int {
+        return collectedPoints + 2*collectedCoins + 3*collectedXp
+    }
     let motionManager = CMMotionManager()
     let frameActionProcessor = SKNode()
     var player = SKSpriteNode()
     var coinCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
+    var scoreCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
     var livesCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
-    let startTime = Date()
+    var fragilePlatformsArray: [FragilePlatform] = []
+    var speedModifier: TimeInterval = 0
+    var platformDifficultyTimer = Timer()
+    var speedDifficultyTimer = Timer()
     
     //Temporary spaces
     private var randomYIncrease: CGFloat = 0
     
-    //Empty initialiser
-    override init() {
-        super.init()
-    }
-    //The normal initialiser
-    init(_ difficulty: String) {
+    //Sets variables based on difficulty
+    func setVariables(_ difficulty: String) {
         
-    }
-    //An implementation to fix a crash
-    override init(size: CGSize) {
-        super.init(size: size)
-    }
-    //Swift told me to do this.
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        switch difficulty {
+        case "Zen":
+            increaseCoinValueChance = 0.4
+            platformTable = [1,1,1,1,1,1,2,2,3,3]
+            sizeTable = [4,4,4,4,4,3,3,3,2,2]
+            difficultyTickLength = 35
+            speedTickLength = 70
+            maximumPlatformDifficulty = 3
+            maximumSizeDifficulty = 8
+        case "Easy":
+            increaseCoinValueChance = 0.45
+            platformTable = [1,1,1,1,1,2,2,3,3,4]
+            sizeTable = [4,4,4,4,3,3,3,2,2,1]
+            difficultyTickLength = 30
+            speedTickLength = 60
+            maximumPlatformDifficulty = 4
+            maximumSizeDifficulty = 9
+        case "Hard":
+            increaseCoinValueChance = 0.55
+            platformTable = [1,1,1,2,2,2,3,3,4,4]
+            sizeTable = [4,4,4,3,3,3,3,2,2,1]
+            difficultyTickLength = 25
+            speedTickLength = 50
+            maximumPlatformDifficulty = 6
+            maximumSizeDifficulty = 12
+        case "Expert":
+            increaseCoinValueChance = 0.7
+            platformTable = [1,1,2,2,3,3,3,4,4,4]
+            sizeTable = [4,4,3,3,2,2,2,2,1,1]
+            difficultyTickLength = 15
+            speedTickLength = 30
+            maximumPlatformDifficulty = 8
+            maximumSizeDifficulty = 14
+        default: break
+        }
     }
     
     func setupGame() {
-        
+        //Set up variables based on difficulty
+        setVariables(difficultyChoice)
         //Set up background        
         backgroundColor = UIColor(colorLiteralRed: 171/255, green: 219/255, blue: 255/255, alpha: 1)
         //MARK: on-screen data labels
@@ -90,6 +129,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         livesCounter.fontSize = viewWidth/50
         setLivesCounterText()
         self.addChild(livesCounter)
+        //Score counter
+        scoreCounter.position = CGPoint(x: 0.35*viewWidth, y: 0.95*viewHeight)
+        scoreCounter.fontColor = UIColor.black
+        scoreCounter.fontSize = viewWidth/50
+        setScoreCounterText()
+        self.addChild(scoreCounter)
         //Create the player
         player = SKSpriteNode(imageNamed: "Tophat")
         player.position = playerSpawn
@@ -110,6 +155,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Start accelerometer data tracking
         motionManager.accelerometerUpdateInterval = 0.0333 //Sets interval so data is gathered 30 times per second
         motionManager.startAccelerometerUpdates() //Start data tracking
+        //Configure timer
+        platformDifficultyTimer = Timer.scheduledTimer(timeInterval: difficultyTickLength, target: self, selector: #selector(self.increaseDifficulty), userInfo: nil, repeats: true)
+        speedDifficultyTimer = Timer.scheduledTimer(timeInterval: speedTickLength, target: self, selector: #selector(self.increaseSpeed), userInfo: nil, repeats: true)
     }
     
     func generateRandomYIncrease() -> CGFloat {
@@ -129,6 +177,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinCounter.text = "Coins: " + String(collectedCoins)
     }
     
+    func setScoreCounterText() {
+        scoreCounter.text = "Score: " + String(collectedPoints)
+    }
+    
     func calculateXVelocity() {
         if let acceleration = motionManager.accelerometerData?.acceleration {
             let rotation = -atan2(acceleration.x, acceleration.y) + (M_PI/2)
@@ -143,8 +195,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnPlatform() {
         
-        let platformType = Int(arc4random_uniform(4)) + 1
-        let platform = BasicPlatform(imageNamed: "Platform" + String(platformType))
+        let platformType = platformTable[Int(arc4random_uniform(10))]
+        let platformSize = sizeTable[Int(arc4random_uniform(10))]
+        let platform: Platform
+        switch platformType {
+        case 1:
+            platform = BasicPlatform(imageNamed: "Platform" + String(platformSize))
+        case 2:
+            platform = FragilePlatform(imageNamed: "FragilePlatform" + String(ceil(Double(platformSize)/2)))
+        case 3:
+            platform = CloudPlatform(imageNamed: "CloudPlatform" + String(ceil(Double(platformSize)/2)))
+        case 4:
+            platform = DummyPlatform(imageNamed: "DummyPlatform" + String(min(platformSize, 3)))
+        default:
+            platform = BasicPlatform(imageNamed: "Platform" + String(platformSize)) //Shouldn't ever happen
+        }
+        
         randomYIncrease = generateRandomYIncrease()
         platform.position = CGPoint(x: viewWidth, y: 0.2*viewHeight + randomYIncrease)
         platform.zPosition = 1
@@ -154,29 +220,71 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         platform.physicsBody?.categoryBitMask = PhysicsCategory.Platform
         platform.physicsBody?.contactTestBitMask = PhysicsCategory.Player
         platform.physicsBody?.collisionBitMask = PhysicsCategory.None
-        let movePlatform = SKAction.moveBy(x: -(viewWidth + 100), y: 0, duration: 4)
+        let movePlatform = SKAction.moveBy(x: -(viewWidth + 100), y: 0, duration: 4 + max(speedModifier, -3.9))
         let removePlatform = SKAction.removeFromParent()
         let platformAction = SKAction.sequence([movePlatform, removePlatform])
         
-        if arc4random_uniform(10) == 0 { //Add a coin
-            let coinType = Int(arc4random_uniform(3)) + 1
-            let coin = Powerup(imageNamed: "Coin" + String(coinType))
-            coin.setScale(0.1)
-            coin.effect = PowerupEffect.coin(coinType)
-            coin.physicsBody = SKPhysicsBody(circleOfRadius: coin.size.width/2)
-            coin.physicsBody?.affectedByGravity = false
-            coin.physicsBody?.categoryBitMask = PhysicsCategory.Powerup
-            coin.physicsBody?.contactTestBitMask = PhysicsCategory.Player
-            coin.physicsBody?.collisionBitMask = PhysicsCategory.None
-            let yIncrement = coin.size.height/2 + platform.size.height
-            coin.position = CGPoint(x: platform.position.x, y: platform.position.y + yIncrement)
-            addChild(coin)
-            coin.run(platformAction)
+        if arc4random_uniform(10) == 0 { //Add a powerup
+            let powerup = createPowerup()
+            let yIncrement = powerup.size.height/2 + platform.size.height
+            powerup.position = CGPoint(x: platform.position.x, y: platform.position.y + yIncrement)
+            addChild(powerup)
+            powerup.run(platformAction)
         }
         
         addChild(platform)
-        
         platform.run(platformAction)
+    }
+    
+    func createPowerup() -> Powerup {
+        var powerup  = Powerup()
+        let powerupType = Int(arc4random_uniform(20))
+        if 7...19 ~= powerupType {
+            let value = coinValue()
+            powerup = Powerup(imageNamed: "Coin" + String(value))
+            powerup.effect = PowerupEffect.coin(value)
+            powerup.setScale(0.1)
+            powerup.physicsBody = SKPhysicsBody(circleOfRadius: powerup.size.width/2)
+        }
+        else {
+            powerup = Powerup(imageNamed: "Powerup")
+            powerup.setScale(0.4)
+            powerup.physicsBody = SKPhysicsBody(rectangleOf: powerup.size)
+            switch powerupType {
+            case 0:
+                powerup.effect = PowerupEffect.xpBoost(Int(arc4random_uniform(21)) + 20)
+            case 1:
+                powerup.effect = PowerupEffect.platformSpeed(Double(arc4random_uniform(5))/10)
+            case 2:
+                powerup.effect = PowerupEffect.pointsBoost(Int(arc4random_uniform(41)) + 40)
+            case 3:
+                powerup.effect = PowerupEffect.xpMod(Double(arc4random_uniform(11))/100)
+            case 4:
+                powerup.effect = PowerupEffect.scoreMod(Double(arc4random_uniform(11))/100)
+            case 5:
+                powerup.effect = PowerupEffect.coinMod(Double(arc4random_uniform(11))/100)
+            case 6:
+                powerup.effect = PowerupEffect.coinBoost(Int(arc4random_uniform(51)) + 50)
+            default: break
+            }
+        }
+        powerup.physicsBody?.affectedByGravity = false
+        powerup.physicsBody?.categoryBitMask = PhysicsCategory.Powerup
+        powerup.physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        powerup.physicsBody?.collisionBitMask = PhysicsCategory.None
+        
+        return powerup
+    }
+    
+    func coinValue() -> Int {
+        var value = 1
+        if Double(arc4random_uniform(101))/100 <= increaseCoinValueChance {
+            value = 2
+            if Double(arc4random_uniform(101))/100 <= increaseCoinValueChance {
+                value = 3
+            }
+        }
+        return value
     }
     
     override func didMove(to view: SKView) {
@@ -185,6 +293,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         //Configure gravity
         physicsWorld.gravity = CGVector(dx: 0, dy: -0.3)
+        //Run functions
         setupGame()
         playGame()
     }
@@ -198,15 +307,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let platformProcesses = SKAction.repeatForever(SKAction.sequence([spawnPlatform, delay]))
         self.run(platformProcesses)
-        
     }
     
     func gameOver() {
+        platformDifficultyTimer.invalidate()
+        speedDifficultyTimer.invalidate()
         self.isPaused = true
         gameVC.performSegue(withIdentifier: "gameOverSegue", sender: self)
     }
     
-    func playerDidCollideWithPlatform(player: SKSpriteNode, platform: Platform) {
+    func playerDidCollideWithPlatform(player: SKSpriteNode, platform: Platform) { //Called when a player touches a platform
         let playerPosition = player.position
         let platformPosition = platform.position
         let playerHeight = player.frame.height / 2
@@ -214,7 +324,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let platformWidth = platform.frame.width / 2
             let playerWidth = player.frame.width / 2
             if (playerPosition.x + playerWidth > platformPosition.x - platformWidth) && (playerPosition.x - playerWidth < platformPosition.x + platformWidth) { //touched top
+                let priorYVelocity = player.physicsBody!.velocity.dy
                 player.physicsBody?.velocity.dy = 200
+                if let touchedPlatform = platform as? CloudPlatform {
+                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    touchedPlatform.removeFromParent()
+                }
+                else if let touchedPlatform = platform as? DummyPlatform {
+                    player.physicsBody?.velocity.dy = priorYVelocity
+                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    touchedPlatform.removeFromParent()
+                }
+                else if let touchedPlatform = platform as? FragilePlatform {
+                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    fragilePlatformsArray.append(touchedPlatform)
+                }
+                else {
+                    collectedPoints += platform.hasBeenTouched()
+                }
+                setScoreCounterText()
             }
         }
     }
@@ -222,9 +350,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func playerDidCollideWithPowerup(player: SKSpriteNode, powerup: Powerup) {
         powerup.removeFromParent()
         switch(powerup.effect) {
-        case .coin(let value):
+        case .coin(let value), .coinBoost(let value):
             collectedCoins += value
             setCoinsCounterText()
+        case .pointsBoost(let value):
+            collectedPoints += value
+            setScoreCounterText()
+        case .xpBoost(let value):
+            collectedXp += value
+        case .coinMod(let value):
+            coinsMod += value
+        case .scoreMod(let value):
+            scoreMod += value
+        case .xpMod(let value):
+            xpMod += value
+        case .platformSpeed(let value):
+            let increaseSpeed = SKAction.run { self.speedModifier -= value }
+            let decreaseSpeed = SKAction.run { self.speedModifier += value }
+            let powerupAction = SKAction.sequence([increaseSpeed, SKAction.wait(forDuration: 10), decreaseSpeed, SKAction.removeFromParent()])
+            let powerupNode = SKNode()
+            self.addChild(powerupNode)
+            powerupNode.run(powerupAction)
         default:
             break
         }
@@ -251,7 +397,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) { //Called each frame
-        let timeSinceStart = startTime.timeIntervalSinceNow //Length of time game has been active
         
         let playerX = player.position.x
         let playerY = player.position.y
@@ -276,8 +421,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.position = playerSpawn
             player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         }
-        
-        if timeSinceStart
+        if fragilePlatformsArray.isEmpty == false {
+            let platform = fragilePlatformsArray[0]
+            if platform.timeSinceTouch >= 0.5 {
+                platform.removeFromParent()
+                fragilePlatformsArray.remove(at: 0)
+            }
+        }
+    }
+    
+    func increasePlatformDifficulty() {
+        var completed = false
+        var easiestPlatform = 1
+        while (completed == false) {
+            for i in 0...9 { //0-9 inc.
+                if platformTable[i] == easiestPlatform {
+                    platformTable[i] += 1
+                    completed = true
+                    break
+                }
+            }
+            easiestPlatform += 1
+        }
+    }
+    
+    func increaseSizeDifficulty() {
+        var completed = false
+        var biggestSize = 4
+        while (completed == false) {
+            for i in 0...9 { //0-9 inc.
+                if sizeTable[i] == biggestSize {
+                    sizeTable[i] -= 1
+                    completed = true
+                    break
+                }
+            }
+            biggestSize -= 1
+        }
+    }
+    
+    func increaseDifficulty() {
+        if arc4random_uniform(2) == 0 && platformDifficulty < maximumPlatformDifficulty {
+            increasePlatformDifficulty()
+        }
+        else if sizeDifficulty < maximumSizeDifficulty {
+            increaseSizeDifficulty()
+        }
+    }
+    
+    func increaseSpeed() {
+        speedModifier -= 0.4
     }
     
 }
