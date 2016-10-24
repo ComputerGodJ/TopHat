@@ -15,7 +15,7 @@ class MainMenuController: UIViewController {
         
         let deviceInfo = UIDevice() //Used to identify device type, for font purposes
         
-        //Setup gradient background
+        //Set up gradient background
         let colourObject = ColourGradient()
         let colourGradient = colourObject.gradient
         colourGradient.frame = view.frame
