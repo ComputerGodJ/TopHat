@@ -21,10 +21,6 @@ class MainMenuController: UIViewController {
         colourGradient.frame = view.frame
         view.layer.insertSublayer(colourGradient, at: 0)
         
-        //Setup colours of top and base bars
-        topBar.backgroundColor = topBar.bgColour
-        baseBar.backgroundColor = topBar.bgColour
-        
         //Font handling code
         achievementButton.titleLabel?.adjustsFontSizeToFitWidth = true //Fixes text for iphone 4S
         

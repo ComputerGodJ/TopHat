@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PostGameController: UIViewController {
     
@@ -24,6 +25,7 @@ class PostGameController: UIViewController {
         colourGradient.frame = view.frame
         view.layer.insertSublayer(colourGradient, at: 0)
         
+        //Manage font
         if deviceInfo.model == "iPad" { //Increase font size for iPad devices
             let newFont = UIFont(name: mainMenuButton.titleLabel!.font.fontName, size: 60)!
             mainMenuButton.titleLabel?.font = newFont
@@ -33,8 +35,21 @@ class PostGameController: UIViewController {
         }
         
         //Set text
-        coinLabel.text = "Coins collected: " + String(collectedCoins)
+        coinLabel.text = "Coins awarded: " + String(collectedCoins + Int(0.25*Float(points)))
         scoreLabel.text = "Points earned: " + String(points)
+        
+        //Update player's coin balance
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
+        let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        if let user = (try? context?.fetch(userRequest))??.first as? User {
+            user.balance += collectedCoins
+            do { //Attempt to save changes to the database
+                try context?.save()
+                print("Saving...")
+            } catch let error { //Process the error if the save fails
+                print("Core data error occurred: \(error)")
+            }
+        }
     }
     //Outlets
     @IBOutlet weak var mainMenuButton: UIButton!

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2553a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aql-2K-hnh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aql-2K-hnh">
+    <device id="retina4_0" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,25 +44,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACP-qh-me8" customClass="TopBarView" customModule="Top_Hat" customModuleProvider="target">
-                                <frame key="frameInset" width="568" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="42"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNp-8m-Z5J" customClass="BaseBarView" customModule="Top_Hat" customModuleProvider="target">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="284.5" width="568" height="35.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hNp-8m-Z5J" secondAttribute="height" multiplier="334:21" id="NOC-kO-uda"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Af0-Ze-KbR">
+                                <rect key="frame" x="70" y="55.5" width="428" height="209"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="nGC-Cx-y3I">
+                                        <rect key="frame" x="0.0" y="0.0" width="129.5" height="209"/>
                                         <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Hats">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="agk-ZL-G7p" kind="show" id="CGD-9c-ohe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="vnP-JK-sHS">
+                                        <rect key="frame" x="149.5" y="0.0" width="129" height="209"/>
                                         <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Perks">
@@ -67,6 +77,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="aLz-Bf-187">
+                                        <rect key="frame" x="298.5" y="0.0" width="129.5" height="209"/>
                                         <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Boosts">
@@ -76,7 +87,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hi-nl-nWZ">
-                                <frame key="frameInset" minY="145" width="34" height="30"/>
+                                <rect key="frame" x="0.0" y="145" width="34" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Back">
@@ -117,6 +128,489 @@
             </objects>
             <point key="canvasLocation" x="1562.323943661972" y="69.375"/>
         </scene>
+        <!--Hat Store Controller-->
+        <scene sceneID="mOZ-AP-ciM">
+            <objects>
+                <viewController id="agk-ZL-G7p" customClass="HatStoreController" customModule="Top_Hat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IHX-lQ-Hex"/>
+                        <viewControllerLayoutGuide type="bottom" id="nwz-4d-ELh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AL9-t1-5Ek">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UkM-8B-vkq" customClass="TopBarView" customModule="Top_Hat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="35.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbx-gz-yen" customClass="BaseBarView" customModule="Top_Hat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284.5" width="568" height="35.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zbx-gz-yen" secondAttribute="height" multiplier="334:21" id="EQQ-cr-Gg5"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irp-qs-Zgx">
+                                <rect key="frame" x="0.0" y="55.5" width="31" height="209"/>
+                                <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sCa-X2-pnU" kind="show" id="ns5-nc-vJa"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZHj-BW-Jbu">
+                                <rect key="frame" x="70" y="52" width="428" height="216.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="o0Z-io-d7c">
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="65.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FhB-DS-O7f">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Giraffehat-store" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-n4-Fg4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="PMM-n4-Fg4" secondAttribute="height" multiplier="1:1" id="IF5-kA-j7N"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vF2-RU-TGx">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk6-WS-jsS" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="20"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Giraffe hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="lbn-ql-S54"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL7-o5-Obm" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="20"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Giraffe hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="wPu-Xo-Hvm"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Piz-tD-slS">
+                                                <rect key="frame" x="146" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Militaryhat-store" translatesAutoresizingMaskIntoConstraints="NO" id="M7j-gk-ZOJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="M7j-gk-ZOJ" secondAttribute="height" multiplier="1:1" id="eIe-AH-YTB"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hHh-mt-Bkl">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8e-Sk-sEo" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Military hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="5d8-m6-qBU"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH9-nX-S2s" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Military hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="qNz-fd-YON"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jmz-Gn-iEy">
+                                                <rect key="frame" x="292" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Partyhat-store" translatesAutoresizingMaskIntoConstraints="NO" id="jA3-b3-ee1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="jA3-b3-ee1" secondAttribute="height" multiplier="1:1" id="osD-aI-GvX"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Fao-co-TWr">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJp-N3-qCV" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Party hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="0hf-i7-kHs"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J49-N5-gQt" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Party hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="JLl-Hb-MyX"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0bZ-l3-DgH">
+                                        <rect key="frame" x="0.0" y="75.5" width="428" height="65.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-ec-C7M">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tophat-store" translatesAutoresizingMaskIntoConstraints="NO" id="1TF-mq-AaG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="1TF-mq-AaG" secondAttribute="height" multiplier="1:1" id="yiJ-fM-YyD"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BDQ-K0-mbx">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyv-hw-6ux" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="7E2-FF-FD1"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbP-JQ-wQW" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="d1j-N4-wCc"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2dX-MP-gxF">
+                                                <rect key="frame" x="146" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vectorhat-store" translatesAutoresizingMaskIntoConstraints="NO" id="RNU-S0-B5L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="RNU-S0-B5L" secondAttribute="height" multiplier="1:1" id="jme-aG-dgZ"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nBL-uD-Of4">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ef-S0-LdM" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Vector hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="LEj-15-ZjI"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cb-f3-PMm" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Vector hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="gTL-Xf-N9S"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YDX-38-SA3">
+                                                <rect key="frame" x="292" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wizardhat-store" translatesAutoresizingMaskIntoConstraints="NO" id="co5-hL-UyJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="co5-hL-UyJ" secondAttribute="height" multiplier="1:1" id="Bmy-1F-1Mq"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Z0-Id0">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDL-WB-OAU" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Wizard hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="br7-ss-xbG"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHF-kz-9th" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Wizard hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="YDW-iR-CGG"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-y1-aOg">
+                                        <rect key="frame" x="0.0" y="151" width="428" height="65.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VXn-vh-gHu">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default hat" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-Br-kZh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Y4H-Br-kZh" secondAttribute="height" multiplier="1:1" id="c8t-wL-qy7"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-8H-gSi">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foQ-f3-sVJ" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Default hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="W8H-48-hwZ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ge-D5-Com" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Default hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="W7o-iK-sZE"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="O5Y-D7-2ij">
+                                                <rect key="frame" x="146" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="600-za-dpk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="600-za-dpk" secondAttribute="height" multiplier="1:1" id="At5-tZ-tr2"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qqs-XJ-LHd">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VbW-6X-Srz" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgM-6Z-Rcb" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-rO-Utp">
+                                                <rect key="frame" x="292" y="0.0" width="136" height="65.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-4j-hMM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="65.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="AZD-4j-hMM" secondAttribute="height" multiplier="1:1" id="YET-Nr-HKn"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DVZ-QN-EXA">
+                                                        <rect key="frame" x="70.5" y="0.0" width="65.5" height="65.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaC-l4-SMB" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30.5"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Info">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32D-Fi-8nw" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="35.5" width="65.5" height="30"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                                <state key="normal" title="Buy">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84253753499999995" green="0.94174591100000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZHj-BW-Jbu" secondAttribute="trailing" constant="50" id="3iO-QA-2F2"/>
+                            <constraint firstItem="zbx-gz-yen" firstAttribute="leading" secondItem="AL9-t1-5Ek" secondAttribute="leading" id="9Gw-Tq-o5Y"/>
+                            <constraint firstItem="zbx-gz-yen" firstAttribute="top" secondItem="irp-qs-Zgx" secondAttribute="bottom" constant="20" id="DSn-GR-IEc"/>
+                            <constraint firstItem="zbx-gz-yen" firstAttribute="height" secondItem="UkM-8B-vkq" secondAttribute="height" id="TqG-Qs-U5e"/>
+                            <constraint firstItem="irp-qs-Zgx" firstAttribute="leading" secondItem="AL9-t1-5Ek" secondAttribute="leading" id="Upy-Gw-WI9"/>
+                            <constraint firstItem="ZHj-BW-Jbu" firstAttribute="leading" secondItem="AL9-t1-5Ek" secondAttribute="leadingMargin" constant="50" id="XWT-ca-RMq"/>
+                            <constraint firstItem="ZHj-BW-Jbu" firstAttribute="centerX" secondItem="AL9-t1-5Ek" secondAttribute="centerX" id="fON-I1-QVt"/>
+                            <constraint firstItem="UkM-8B-vkq" firstAttribute="leading" secondItem="AL9-t1-5Ek" secondAttribute="leading" id="jRM-vc-5El"/>
+                            <constraint firstItem="ZHj-BW-Jbu" firstAttribute="centerY" secondItem="AL9-t1-5Ek" secondAttribute="centerY" id="kDo-mf-2QT"/>
+                            <constraint firstItem="UkM-8B-vkq" firstAttribute="top" secondItem="AL9-t1-5Ek" secondAttribute="top" id="ktY-Sh-37F"/>
+                            <constraint firstAttribute="trailing" secondItem="zbx-gz-yen" secondAttribute="trailing" id="m3w-1h-bmO"/>
+                            <constraint firstItem="nwz-4d-ELh" firstAttribute="top" secondItem="zbx-gz-yen" secondAttribute="bottom" id="rc8-ng-dur"/>
+                            <constraint firstAttribute="trailing" secondItem="UkM-8B-vkq" secondAttribute="trailing" id="t1w-eP-XwT"/>
+                            <constraint firstItem="irp-qs-Zgx" firstAttribute="top" secondItem="UkM-8B-vkq" secondAttribute="bottom" constant="20" id="wLX-FP-INT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button1" destination="FL7-o5-Obm" id="hYP-kE-ZRT"/>
+                        <outlet property="button10" destination="Uyv-hw-6ux" id="pfp-Ya-hHy"/>
+                        <outlet property="button11" destination="0Ef-S0-LdM" id="JYL-8v-t9k"/>
+                        <outlet property="button12" destination="wDL-WB-OAU" id="gKw-In-PrO"/>
+                        <outlet property="button13" destination="Lk6-WS-jsS" id="Jh3-Jp-no2"/>
+                        <outlet property="button14" destination="foQ-f3-sVJ" id="Ssi-ys-KhL"/>
+                        <outlet property="button15" destination="VbW-6X-Srz" id="ZMg-EL-vS9"/>
+                        <outlet property="button16" destination="OgM-6Z-Rcb" id="MBS-B0-O3I"/>
+                        <outlet property="button17" destination="LaC-l4-SMB" id="EWG-4K-Neg"/>
+                        <outlet property="button18" destination="32D-Fi-8nw" id="iKR-VH-ari"/>
+                        <outlet property="button2" destination="hH9-nX-S2s" id="Hkl-zt-Ci3"/>
+                        <outlet property="button3" destination="J49-N5-gQt" id="sVg-y9-b3g"/>
+                        <outlet property="button4" destination="GbP-JQ-wQW" id="bap-0R-Ewc"/>
+                        <outlet property="button5" destination="4Cb-f3-PMm" id="wjw-q1-YEv"/>
+                        <outlet property="button6" destination="sHF-kz-9th" id="E4b-q6-Lze"/>
+                        <outlet property="button7" destination="5Ge-D5-Com" id="KVZ-3G-bPd"/>
+                        <outlet property="button8" destination="N8e-Sk-sEo" id="Nwt-1f-6Qa"/>
+                        <outlet property="button9" destination="JJp-N3-qCV" id="fLE-Eg-Bzz"/>
+                        <outlet property="topBar" destination="UkM-8B-vkq" id="0Cd-C6-DhR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Y7-NR-OFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617.2535211267607" y="1031.25"/>
+        </scene>
         <!--Post Game Controller-->
         <scene sceneID="Zyz-H9-Nx0">
             <objects>
@@ -130,21 +624,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coins collected: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REI-CI-Qvh">
-                                <frame key="frameInset" minX="24.82%" minY="42.19%" width="49.65%" height="17.19%"/>
+                                <rect key="frame" x="138" y="133" width="285" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game over!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbf-NS-QNq">
-                                <frame key="frameInset" minX="24.82%" minY="3.75%" width="49.65%" height="17.81%"/>
+                                <rect key="frame" x="138" y="10" width="285" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBE-Be-c4I">
-                                <frame key="frameInset" minX="33.10%" minY="70.00%" width="33.63%" height="21.25%"/>
+                                <rect key="frame" x="188" y="223" width="191" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
@@ -156,7 +650,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points earned: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3Y-jU-3y3">
-                                <frame key="frameInset" minX="24.82%" minY="28.12%" width="49.82%" height="16.88%"/>
+                                <rect key="frame" x="138" y="90" width="285" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -189,11 +683,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-JH-vz7">
-                                <frame key="frameInset" minX="-2" minY="-2"/>
+                                <rect key="frame" x="-2" y="-2" width="569" height="321"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nly-Hk-8da">
-                                <frame key="frameInset" minX="38.73%" minY="80.25%" width="20.78%" height="77"/>
+                                <rect key="frame" x="220" y="197" width="118" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="45"/>
@@ -225,11 +719,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ia7-3L-BiD">
-                                <frame key="frameInset" minX="70" minY="30" width="428" height="260"/>
+                                <rect key="frame" x="70" y="30" width="428" height="260"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YxY-bu-ZYy">
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Xce-BH-Qrc">
+                                                <rect key="frame" x="0.0" y="0.0" width="204" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="Zen">
@@ -240,6 +736,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-HO-WAv" userLabel="Store Button">
+                                                <rect key="frame" x="224" y="0.0" width="204" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="Easy">
@@ -252,8 +749,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qPa-Ii-Szy">
+                                        <rect key="frame" x="0.0" y="140" width="428" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZA0-4P-9KC">
+                                                <rect key="frame" x="0.0" y="0.0" width="204" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="Hard">
@@ -264,6 +763,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCU-vw-CYJ">
+                                                <rect key="frame" x="224" y="0.0" width="204" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="Expert">
@@ -278,7 +778,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh3-CI-YS9">
-                                <frame key="frameInset" minY="145" width="34" height="30"/>
+                                <rect key="frame" x="0.0" y="145" width="34" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Back">
@@ -324,22 +824,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uN-BS-3PN" customClass="TopBarView" customModule="Top_Hat" customModuleProvider="target">
-                                <frame key="frameInset" minX="-1" height="42"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlf-uK-Tfd" customClass="BaseBarView" customModule="Top_Hat" customModuleProvider="target">
-                                <frame key="frameInset" minX="-1" height="42"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vlf-uK-Tfd" secondAttribute="height" multiplier="334:21" id="zYf-5o-gPC"/>
-                                </constraints>
+                                <rect key="frame" x="-1" y="0.0" width="569" height="42"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J05-bt-esI">
+                                <rect key="frame" x="40" y="55.5" width="488" height="209"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aCb-DA-iQG">
+                                        <rect key="frame" x="0.0" y="0.0" width="488" height="94.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-tg-Afk">
-                                                <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="234" height="94.5"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000856164382" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="PLAY">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -349,6 +845,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvQ-8C-6H3" userLabel="Store Button">
+                                                <rect key="frame" x="254" y="0.0" width="234" height="94.5"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="STORE">
@@ -361,8 +858,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="U6Y-8t-fXo">
+                                        <rect key="frame" x="0.0" y="114.5" width="488" height="94.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-Bs-E0m">
+                                                <rect key="frame" x="0.0" y="0.0" width="234" height="94.5"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="HIGHSCORES">
@@ -370,6 +869,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ta-yw-Qbj">
+                                                <rect key="frame" x="254" y="0.0" width="234" height="94.5"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                                 <state key="normal" title="ACHIEVEMENTS">
@@ -380,6 +880,13 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlf-uK-Tfd" customClass="BaseBarView" customModule="Top_Hat" customModuleProvider="target">
+                                <rect key="frame" x="-1" y="278" width="569" height="42"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vlf-uK-Tfd" secondAttribute="height" multiplier="334:21" id="zYf-5o-gPC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.84253753499659179" green="0.94174591097838523" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -411,14 +918,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGm-aL-Fcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="58"/>
+            <point key="canvasLocation" x="817.6056338028169" y="56.25"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Coming soon" width="200" height="200"/>
+        <image name="Default hat" width="200" height="200"/>
+        <image name="Giraffehat-store" width="500" height="500"/>
         <image name="LaunchScreen" width="667" height="375"/>
+        <image name="Militaryhat-store" width="230" height="230"/>
+        <image name="Partyhat-store" width="160" height="160"/>
+        <image name="Tophat-store" width="300" height="300"/>
+        <image name="Vectorhat-store" width="150" height="150"/>
+        <image name="Wizardhat-store" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MaC-4k-bYs"/>
+        <segue reference="ns5-nc-vJa"/>
+        <segue reference="UYj-iR-Jif"/>
         <segue reference="7pD-sa-5GQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,6 +12,13 @@
 		0905C2051DBE22A400B73D6A /* GameSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2041DBE22A400B73D6A /* GameSelectController.swift */; };
 		0905C2081DBE6A8000B73D6A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2061DBE6A8000B73D6A /* Model.xcdatamodeld */; };
 		0905C2471DBE714800B73D6A /* HatRackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2461DBE714800B73D6A /* HatRackController.swift */; };
+		0905C24A1DC0BB9300B73D6A /* DatabaseInitialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2491DC0BB9300B73D6A /* DatabaseInitialiser.swift */; };
+		0905C24F1DC0BE7E00B73D6A /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C24B1DC0BE7E00B73D6A /* User+CoreDataClass.swift */; };
+		0905C2501DC0BE7E00B73D6A /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C24C1DC0BE7E00B73D6A /* User+CoreDataProperties.swift */; };
+		0905C2511DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C24D1DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift */; };
+		0905C2521DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C24E1DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift */; };
+		0905C2541DC104AF00B73D6A /* HatStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2531DC104AF00B73D6A /* HatStoreController.swift */; };
+		0905C2561DC105F600B73D6A /* StoreButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905C2551DC105F600B73D6A /* StoreButtonClass.swift */; };
 		093555621DAD59BB0069AA65 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093555611DAD59BB0069AA65 /* TopBarView.swift */; };
 		0937F6EE1DBB60B5005CFFBB /* PlatformClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937F6ED1DBB60B5005CFFBB /* PlatformClasses.swift */; };
 		09A05F711DAD0AF5004927E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A05F701DAD0AF5004927E4 /* AppDelegate.swift */; };
@@ -52,6 +59,13 @@
 		0905C2041DBE22A400B73D6A /* GameSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSelectController.swift; sourceTree = "<group>"; };
 		0905C2071DBE6A8000B73D6A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0905C2461DBE714800B73D6A /* HatRackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatRackController.swift; sourceTree = "<group>"; };
+		0905C2491DC0BB9300B73D6A /* DatabaseInitialiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseInitialiser.swift; sourceTree = "<group>"; };
+		0905C24B1DC0BE7E00B73D6A /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0905C24C1DC0BE7E00B73D6A /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0905C24D1DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreHat+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0905C24E1DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreHat+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0905C2531DC104AF00B73D6A /* HatStoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatStoreController.swift; sourceTree = "<group>"; };
+		0905C2551DC105F600B73D6A /* StoreButtonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreButtonClass.swift; sourceTree = "<group>"; };
 		093555611DAD59BB0069AA65 /* TopBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		0937F6ED1DBB60B5005CFFBB /* PlatformClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformClasses.swift; sourceTree = "<group>"; };
 		09A05F6D1DAD0AF4004927E4 /* Top Hat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Top Hat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +114,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0905C2481DC0B8D200B73D6A /* Data Code */ = {
+			isa = PBXGroup;
+			children = (
+				0905C24B1DC0BE7E00B73D6A /* User+CoreDataClass.swift */,
+				0905C24C1DC0BE7E00B73D6A /* User+CoreDataProperties.swift */,
+				0905C24D1DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift */,
+				0905C24E1DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift */,
+				0905C2061DBE6A8000B73D6A /* Model.xcdatamodeld */,
+				0905C2491DC0BB9300B73D6A /* DatabaseInitialiser.swift */,
+			);
+			name = "Data Code";
+			sourceTree = "<group>";
+		};
 		093555601DAD59730069AA65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +135,7 @@
 				09C326091DAED35E00311C03 /* BaseBarView.swift */,
 				0937F6ED1DBB60B5005CFFBB /* PlatformClasses.swift */,
 				0905C2001DBCB97F00B73D6A /* PowerupClass.swift */,
+				0905C2551DC105F600B73D6A /* StoreButtonClass.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -135,15 +163,16 @@
 		09A05F6F1DAD0AF4004927E4 /* Top Hat */ = {
 			isa = PBXGroup;
 			children = (
+				0905C2481DC0B8D200B73D6A /* Data Code */,
 				093555601DAD59730069AA65 /* Resources */,
 				09A05F701DAD0AF5004927E4 /* AppDelegate.swift */,
-				0905C2061DBE6A8000B73D6A /* Model.xcdatamodeld */,
 				09A05F741DAD0AF5004927E4 /* Actions.sks */,
 				09A05F761DAD0AF5004927E4 /* GameScene.swift */,
 				0905C2021DBCDC0E00B73D6A /* PostGameController.swift */,
 				09A05F781DAD0AF5004927E4 /* GameViewController.swift */,
 				0905C2041DBE22A400B73D6A /* GameSelectController.swift */,
 				09A05F7A1DAD0AF5004927E4 /* Main.storyboard */,
+				0905C2531DC104AF00B73D6A /* HatStoreController.swift */,
 				0905C2461DBE714800B73D6A /* HatRackController.swift */,
 				09A05FA41DAD0C2D004927E4 /* LaunchScreenController.swift */,
 				09A05FA61DAD1593004927E4 /* MainMenuController.swift */,
@@ -235,7 +264,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = J;
 				TargetAttributes = {
 					09A05F6C1DAD0AF4004927E4 = {
@@ -311,17 +340,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				0905C2471DBE714800B73D6A /* HatRackController.swift in Sources */,
+				0905C24A1DC0BB9300B73D6A /* DatabaseInitialiser.swift in Sources */,
 				09A05F771DAD0AF5004927E4 /* GameScene.swift in Sources */,
 				09A05F791DAD0AF5004927E4 /* GameViewController.swift in Sources */,
 				0937F6EE1DBB60B5005CFFBB /* PlatformClasses.swift in Sources */,
+				0905C2541DC104AF00B73D6A /* HatStoreController.swift in Sources */,
 				09A05FA51DAD0C2D004927E4 /* LaunchScreenController.swift in Sources */,
+				0905C2561DC105F600B73D6A /* StoreButtonClass.swift in Sources */,
+				0905C24F1DC0BE7E00B73D6A /* User+CoreDataClass.swift in Sources */,
 				093555621DAD59BB0069AA65 /* TopBarView.swift in Sources */,
 				0905C2011DBCB97F00B73D6A /* PowerupClass.swift in Sources */,
 				09A05F711DAD0AF5004927E4 /* AppDelegate.swift in Sources */,
+				0905C2521DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift in Sources */,
 				09A05FA91DAD15E3004927E4 /* ColourGradientClass.swift in Sources */,
 				09A05FA71DAD1593004927E4 /* MainMenuController.swift in Sources */,
 				09C3260A1DAED35F00311C03 /* BaseBarView.swift in Sources */,
+				0905C2501DC0BE7E00B73D6A /* User+CoreDataProperties.swift in Sources */,
 				0905C2031DBCDC0E00B73D6A /* PostGameController.swift in Sources */,
+				0905C2511DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift in Sources */,
 				0905C2081DBE6A8000B73D6A /* Model.xcdatamodeld in Sources */,
 				0905C2051DBE22A400B73D6A /* GameSelectController.swift in Sources */,
 			);
@@ -396,6 +432,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -419,6 +456,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -446,6 +484,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -463,6 +502,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -9,6 +9,7 @@
 import SpriteKit
 import UIKit
 import CoreMotion
+import CoreData
 
 struct PhysicsCategory {
     static let None: UInt32 = 0
@@ -67,6 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var speedModifier: TimeInterval = 0
     var platformDifficultyTimer = Timer()
     var speedDifficultyTimer = Timer()
+    let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
     
     //Temporary spaces
     private var randomYIncrease: CGFloat = 0
@@ -136,7 +138,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setScoreCounterText()
         self.addChild(scoreCounter)
         //Create the player
-        player = SKSpriteNode(imageNamed: "Tophat")
+        let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        if let user = (try? context?.fetch(userRequest))??.first as? User {
+            player = SKSpriteNode(imageNamed: user.currentHat!)
+        }
         player.position = playerSpawn
         player.zPosition = 2
         player.setScale(0.2)

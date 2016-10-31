@@ -21,10 +21,6 @@ class HatRackController: UIViewController {
         colourGradient.frame = view.frame
         view.layer.insertSublayer(colourGradient, at: 0)
         
-        //Setup colours of top and base bars
-        topBar.backgroundColor = topBar.bgColour
-        baseBar.backgroundColor = topBar.bgColour
-        
         //Font handling code
         boostButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
