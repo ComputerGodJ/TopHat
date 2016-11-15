@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Top Hat
 //
-//  Created by Jonathan Robinson on 27/10/2016.
+//  Created by Jonathan Robinson on 01/11/2016.
 //  Copyright © 2016 J. All rights reserved.
 //
 
@@ -18,5 +18,6 @@ extension User {
 
     @NSManaged public var balance: Int32
     @NSManaged public var currentHat: String?
+    @NSManaged public var xp: Int32
 
 }

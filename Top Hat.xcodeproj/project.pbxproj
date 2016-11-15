@@ -34,6 +34,9 @@
 		09A05FA71DAD1593004927E4 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A05FA61DAD1593004927E4 /* MainMenuController.swift */; };
 		09A05FA91DAD15E3004927E4 /* ColourGradientClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A05FA81DAD15E3004927E4 /* ColourGradientClass.swift */; };
 		09C3260A1DAED35F00311C03 /* BaseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C326091DAED35E00311C03 /* BaseBarView.swift */; };
+		09DB7F4B1DCCD86D00E9F16D /* Perk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DB7F491DCCD86D00E9F16D /* Perk.swift */; };
+		09DB7F4C1DCCD86D00E9F16D /* Perk+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DB7F4A1DCCD86D00E9F16D /* Perk+CoreDataProperties.swift */; };
+		09E2654F1DC8D2F400D3C543 /* PerkStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2654E1DC8D2F400D3C543 /* PerkStoreController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		09A05FA61DAD1593004927E4 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		09A05FA81DAD15E3004927E4 /* ColourGradientClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourGradientClass.swift; sourceTree = "<group>"; };
 		09C326091DAED35E00311C03 /* BaseBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBarView.swift; sourceTree = "<group>"; };
+		09DB7F491DCCD86D00E9F16D /* Perk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Perk.swift; sourceTree = "<group>"; };
+		09DB7F4A1DCCD86D00E9F16D /* Perk+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Perk+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		09E2654E1DC8D2F400D3C543 /* PerkStoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerkStoreController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +123,14 @@
 		0905C2481DC0B8D200B73D6A /* Data Code */ = {
 			isa = PBXGroup;
 			children = (
+				09DB7F491DCCD86D00E9F16D /* Perk.swift */,
+				09DB7F4A1DCCD86D00E9F16D /* Perk+CoreDataProperties.swift */,
 				0905C24B1DC0BE7E00B73D6A /* User+CoreDataClass.swift */,
 				0905C24C1DC0BE7E00B73D6A /* User+CoreDataProperties.swift */,
 				0905C24D1DC0BE7E00B73D6A /* StoreHat+CoreDataClass.swift */,
 				0905C24E1DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift */,
-				0905C2061DBE6A8000B73D6A /* Model.xcdatamodeld */,
 				0905C2491DC0BB9300B73D6A /* DatabaseInitialiser.swift */,
+				0905C2061DBE6A8000B73D6A /* Model.xcdatamodeld */,
 			);
 			name = "Data Code";
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 				0905C2041DBE22A400B73D6A /* GameSelectController.swift */,
 				09A05F7A1DAD0AF5004927E4 /* Main.storyboard */,
 				0905C2531DC104AF00B73D6A /* HatStoreController.swift */,
+				09E2654E1DC8D2F400D3C543 /* PerkStoreController.swift */,
 				0905C2461DBE714800B73D6A /* HatRackController.swift */,
 				09A05FA41DAD0C2D004927E4 /* LaunchScreenController.swift */,
 				09A05FA61DAD1593004927E4 /* MainMenuController.swift */,
@@ -344,12 +353,15 @@
 				09A05F771DAD0AF5004927E4 /* GameScene.swift in Sources */,
 				09A05F791DAD0AF5004927E4 /* GameViewController.swift in Sources */,
 				0937F6EE1DBB60B5005CFFBB /* PlatformClasses.swift in Sources */,
+				09DB7F4C1DCCD86D00E9F16D /* Perk+CoreDataProperties.swift in Sources */,
 				0905C2541DC104AF00B73D6A /* HatStoreController.swift in Sources */,
 				09A05FA51DAD0C2D004927E4 /* LaunchScreenController.swift in Sources */,
 				0905C2561DC105F600B73D6A /* StoreButtonClass.swift in Sources */,
 				0905C24F1DC0BE7E00B73D6A /* User+CoreDataClass.swift in Sources */,
 				093555621DAD59BB0069AA65 /* TopBarView.swift in Sources */,
+				09DB7F4B1DCCD86D00E9F16D /* Perk.swift in Sources */,
 				0905C2011DBCB97F00B73D6A /* PowerupClass.swift in Sources */,
+				09E2654F1DC8D2F400D3C543 /* PerkStoreController.swift in Sources */,
 				09A05F711DAD0AF5004927E4 /* AppDelegate.swift in Sources */,
 				0905C2521DC0BE7E00B73D6A /* StoreHat+CoreDataProperties.swift in Sources */,
 				09A05FA91DAD15E3004927E4 /* ColourGradientClass.swift in Sources */,

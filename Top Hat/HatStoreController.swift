@@ -15,6 +15,7 @@ class HatStoreController: UIViewController {
     var boughtDictionary: [String : Bool] = [:]
     var descriptionDictionary: [String : String] = [:]
     var costDictionary: [String : Int] = [:]
+    var levelDictionary: [String: Int] = [:]
     var refDictionary: [String : StoreHat] = [:]
     let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
 
@@ -37,6 +38,7 @@ class HatStoreController: UIViewController {
             boughtDictionary[hat.name!] = hat.isBought
             descriptionDictionary[hat.name!] = hat.hatDescription
             costDictionary[hat.name!] = Int(hat.cost)
+            levelDictionary[hat.name!] = Int(hat.level)
             refDictionary[hat.name!] = hat
         }
         
@@ -50,13 +52,13 @@ class HatStoreController: UIViewController {
     }
     
     func checkButtonText() {
-        //This is declared in this was due to a compiler bug
+        //This is declared in this way due to a compiler bug
         var buttons = [button1, button2, button3, button4, button5, button6, button7]
         buttons.append(contentsOf: [button8, button9, button10, button11, button12, button13, button14])
         buttons.append(contentsOf: [button15, button16, button17, button18])
         for index in 0...6 {
             let button = buttons[index]!
-            if boughtDictionary[button.hatName]! { //true if bought
+            if boughtDictionary[button.buttonData]! { //true if bought
                 button.setTitle("Wear", for: UIControlState.normal)
             } else {
                 button.setTitle("Buy", for: UIControlState.normal)
@@ -76,7 +78,7 @@ class HatStoreController: UIViewController {
     }
     
     @IBAction func infoTap(_ sender: StoreButton) {
-        let hatName = sender.hatName
+        let hatName = sender.buttonData
         let alertText = descriptionDictionary[hatName]! + "\nCosts: " + String(describing: costDictionary[hatName]!)
         let alert = UIAlertController(title: "Hat description", message: alertText, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
@@ -87,7 +89,8 @@ class HatStoreController: UIViewController {
         let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
         if let user = (try? context?.fetch(userRequest))??.first as? User {
             let cost = costDictionary[hatName]!
-            if Int(user.balance) >= cost {
+            let level = levelDictionary[hatName]!
+            if Int(user.balance) >= cost && xpToLevel(xp: Int(user.xp)) >= level {
                 let hatToBuy = refDictionary[hatName]!
                 hatToBuy.isBought = true
                 user.balance -= cost
@@ -100,8 +103,12 @@ class HatStoreController: UIViewController {
                     print("Core data error occurred: \(error)")
                 }
                 return true
+            } else if Int(user.balance) < cost {
+                let alert = UIAlertController(title: "Purchase failed", message: "Purchased failed: you do not have enough money!", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController(title: "Hat description", message: "Purchased failed: you do not have enough money!", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Purchase failed", message: "Purchased failed: you are not a high enough level!", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -109,16 +116,20 @@ class HatStoreController: UIViewController {
         return false
     }
     
+    private func xpToLevel(xp: Int) -> Int {
+        return Int(floor(sqrt(Double(xp))/2))
+    }
+    
     @IBAction func buyTap(_ sender: StoreButton) {
         if sender.titleLabel!.text == "Buy" {
-            if buyHat(hatName: sender.hatName) {
+            if buyHat(hatName: sender.buttonData) {
                 sender.setTitle("Wear", for: UIControlState.normal)
                 topBar.setNeedsDisplay()
             }
         } else {
             let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
             if let user = (try? context?.fetch(userRequest))??.first as? User {
-                user.currentHat = sender.hatName
+                user.currentHat = sender.buttonData
                 do { //Attempt to save changes to the database
                     try context?.save()
                     print("Saving change...")

@@ -13,6 +13,10 @@ class PostGameController: UIViewController {
     
     var collectedCoins = 0
     var points = 0
+    var collectedXp = 0
+    var scoreMod = 1.0
+    var coinMod = 1.0
+    var xpMod = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,17 +36,35 @@ class PostGameController: UIViewController {
             coinLabel.font = newFont
             topTextLabel.font = newFont
             scoreLabel.font = newFont
+            xpLabel.font = newFont
         }
         
+        print(points)
+        print(scoreMod)
+        print(collectedCoins)
+        print(coinMod)
+        print(collectedXp)
+        print(xpMod)
         //Set text
-        coinLabel.text = "Coins awarded: " + String(collectedCoins + Int(0.25*Float(points)))
-        scoreLabel.text = "Points earned: " + String(points)
+        let finalScore = Int(floor(Double(points) * scoreMod))
+        let finalCoins = Int(floor(Double(collectedCoins) * coinMod + 0.25 * Double(points)))
+        let finalXp = Int(floor(Double(collectedXp)*xpMod + 0.25*Double(collectedCoins)))
+        scoreLabel.text = "Points earned: " + String(finalScore)
+        coinLabel.text = "Coins awarded: " + String(finalCoins)
+        xpLabel.text = "Xp awarded: " + String(finalXp)
         
-        //Update player's coin balance
+        //Update player's coin & xp
         let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
         let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
         if let user = (try? context?.fetch(userRequest))??.first as? User {
-            user.balance += collectedCoins
+            user.balance += finalCoins
+            let oldLevel = Int(floor(sqrt(Double(user.xp))/2))
+            user.xp += finalXp
+            let newLevel = Int(floor(sqrt(Double(user.xp))/2))
+            if newLevel > oldLevel {
+                xpLabel.text? += "   Level up!"
+            }
+            
             do { //Attempt to save changes to the database
                 try context?.save()
                 print("Saving...")
@@ -56,4 +78,5 @@ class PostGameController: UIViewController {
     @IBOutlet weak var coinLabel: UILabel!
     @IBOutlet weak var topTextLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var xpLabel: UILabel!
 }

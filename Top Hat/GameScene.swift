@@ -24,26 +24,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameVC = UIViewController()
     
     //Gameplay variables
-    var playing = true
+    private var playing = true
     var collectedCoins = 0
     var collectedPoints = 0
     var collectedXp = 0
     var lives = 3
     private var platformDifficulty = 0
     private var sizeDifficulty = 0
-    private var scoreMod = 0.0
-    private var coinsMod = 0.0
-    private var xpMod = 0.0
+    var scoreMod = 1.0
+    var coinsMod = 1.0
+    var xpMod = 1.0
     
     //Values set at creation
     var difficultyChoice = ""
-    var difficultyTickLength: TimeInterval = 0
-    var speedTickLength: TimeInterval = 0
-    var platformTable: [Int] = []
-    var sizeTable: [Int] = []
-    var increaseCoinValueChance: Double = 0
-    var maximumPlatformDifficulty: Int = 0
-    var maximumSizeDifficulty: Int = 0
+    private var difficultyTickLength: TimeInterval = 0
+    private var speedTickLength: TimeInterval = 0
+    private var platformTable: [Int] = []
+    private var sizeTable: [Int] = []
+    private var doubleCoinChance = 0.0
+    private var tripleCoinChance = 0.0
+    private var platformXpChance = 0.0
+    private var doubleXpChance = 0.0
+    private var maximumPlatformDifficulty: Int = 0
+    private var maximumSizeDifficulty: Int = 0
     
     //Values used for game logic or scene
     private var viewHeight: CGFloat {
@@ -58,27 +61,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var currentScore: Int {
         return collectedPoints + 2*collectedCoins + 3*collectedXp
     }
-    let motionManager = CMMotionManager()
-    let frameActionProcessor = SKNode()
-    var player = SKSpriteNode()
-    var coinCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
-    var scoreCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
-    var livesCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
-    var fragilePlatformsArray: [FragilePlatform] = []
-    var speedModifier: TimeInterval = 0
-    var platformDifficultyTimer = Timer()
-    var speedDifficultyTimer = Timer()
-    let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
+    private let motionManager = CMMotionManager()
+    private var player = SKSpriteNode()
+    private var coinCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
+    private var scoreCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
+    private var livesCounter = SKLabelNode(fontNamed: "HelveticaNeue-Light")
+    private var fragilePlatformsArray: [FragilePlatform] = []
+    private var speedModifier: TimeInterval = 0
+    private var platformDifficultyTimer = Timer()
+    private var speedDifficultyTimer = Timer()
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext
     
     //Temporary spaces
     private var randomYIncrease: CGFloat = 0
     
     //Sets variables based on difficulty
-    func setVariables(_ difficulty: String) {
+    private func setVariables(_ difficulty: String) {
         
         switch difficulty {
         case "Zen":
-            increaseCoinValueChance = 0.4
             platformTable = [1,1,1,1,1,1,2,2,3,3]
             sizeTable = [4,4,4,4,4,3,3,3,2,2]
             difficultyTickLength = 35
@@ -86,7 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maximumPlatformDifficulty = 3
             maximumSizeDifficulty = 8
         case "Easy":
-            increaseCoinValueChance = 0.45
             platformTable = [1,1,1,1,1,2,2,3,3,4]
             sizeTable = [4,4,4,4,3,3,3,2,2,1]
             difficultyTickLength = 30
@@ -94,7 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maximumPlatformDifficulty = 4
             maximumSizeDifficulty = 9
         case "Hard":
-            increaseCoinValueChance = 0.55
             platformTable = [1,1,1,2,2,2,3,3,4,4]
             sizeTable = [4,4,4,3,3,3,3,2,2,1]
             difficultyTickLength = 25
@@ -102,7 +101,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maximumPlatformDifficulty = 6
             maximumSizeDifficulty = 12
         case "Expert":
-            increaseCoinValueChance = 0.7
             platformTable = [1,1,2,2,3,3,3,4,4,4]
             sizeTable = [4,4,3,3,2,2,2,2,1,1]
             difficultyTickLength = 15
@@ -113,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func setupGame() {
+    private func setupGame() {
         //Set up variables based on difficulty
         setVariables(difficultyChoice)
         //Set up background        
@@ -137,6 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreCounter.fontSize = viewWidth/50
         setScoreCounterText()
         self.addChild(scoreCounter)
+        //MARK: Player
         //Create the player
         let userRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
         if let user = (try? context?.fetch(userRequest))??.first as? User {
@@ -157,15 +156,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let calculateXSequence = SKAction.sequence([calculateXMotion, SKAction.wait(forDuration: 0.05)]) //X velocity is calculated 20 times per second
         let calculateXAction = SKAction.repeatForever(calculateXSequence)
         player.run(calculateXAction)
+        //MARK: Data & timers
         //Start accelerometer data tracking
         motionManager.accelerometerUpdateInterval = 0.0333 //Sets interval so data is gathered 30 times per second
         motionManager.startAccelerometerUpdates() //Start data tracking
-        //Configure timer
+        //Configure timers
         platformDifficultyTimer = Timer.scheduledTimer(timeInterval: difficultyTickLength, target: self, selector: #selector(self.increaseDifficulty), userInfo: nil, repeats: true)
         speedDifficultyTimer = Timer.scheduledTimer(timeInterval: speedTickLength, target: self, selector: #selector(self.increaseSpeed), userInfo: nil, repeats: true)
+        //MARK: Perks
+        //Load data
+        let perkRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Perk")
+        let perkRequestSorter = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+        perkRequest.sortDescriptors = [perkRequestSorter]
+        let perks = (try? context?.fetch(perkRequest)) as! [Perk]
+        //Process the data
+        for perk in perks {
+            switch perk.name! {
+            case "doubleCoins":
+                doubleCoinChance = Double(perk.level) * 0.05
+            case "tripleCoins":
+                tripleCoinChance = Double(perk.level) * 0.05
+            case "xpFromPlatform":
+                platformXpChance = Double(perk.level) * 0.1
+            case "xpIncrease":
+                doubleXpChance = Double(perk.level) * 0.1
+            default:
+                break
+            }
+        }
     }
     
-    func generateRandomYIncrease() -> CGFloat {
+    private func generateRandomYIncrease() -> CGFloat {
         let boundary = viewHeight*0.6
         var newYIncrease = CGFloat(arc4random_uniform(UInt32(boundary)))
         if abs(newYIncrease - randomYIncrease) < 0.15*viewHeight {
@@ -174,19 +195,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return newYIncrease
     }
     
-    func setLivesCounterText() {
+    private func setLivesCounterText() {
         livesCounter.text = "Lives: " + String(lives)
     }
     
-    func setCoinsCounterText() {
+    private func setCoinsCounterText() {
         coinCounter.text = "Coins: " + String(collectedCoins)
     }
     
-    func setScoreCounterText() {
+    private func setScoreCounterText() {
         scoreCounter.text = "Score: " + String(collectedPoints)
     }
     
-    func calculateXVelocity() {
+    private func calculateXVelocity() {
         if let acceleration = motionManager.accelerometerData?.acceleration {
             let rotation = -atan2(acceleration.x, acceleration.y) + (M_PI/2)
             if rotation > 0 {
@@ -198,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func spawnPlatform() {
+    private func spawnPlatform() {
         
         let platformType = platformTable[Int(arc4random_uniform(10))]
         let platformSize = sizeTable[Int(arc4random_uniform(10))]
@@ -241,7 +262,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         platform.run(platformAction)
     }
     
-    func createPowerup() -> Powerup {
+    private func createPowerup() -> Powerup {
         var powerup  = Powerup()
         let powerupType = Int(arc4random_uniform(20))
         if 7...19 ~= powerupType {
@@ -281,11 +302,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return powerup
     }
     
-    func coinValue() -> Int {
+    private func coinValue() -> Int {
         var value = 1
-        if Double(arc4random_uniform(101))/100 <= increaseCoinValueChance {
+        if Double(arc4random_uniform(101))/100 <= doubleCoinChance {
             value = 2
-            if Double(arc4random_uniform(101))/100 <= increaseCoinValueChance {
+            if Double(arc4random_uniform(101))/100 <= tripleCoinChance {
                 value = 3
             }
         }
@@ -297,31 +318,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Configure world properties
         physicsWorld.contactDelegate = self
         //Configure gravity
-        physicsWorld.gravity = CGVector(dx: 0, dy: -0.3)
+        physicsWorld.gravity = CGVector(dx: 0, dy: -0.6)
         //Run functions
         setupGame()
         playGame()
     }
     
-    func playGame() {
+    private func playGame() {
         let spawnPlatform = SKAction.run({
             () in
             self.spawnPlatform()
         })
-        let delay = SKAction.wait(forDuration: 0.25)
+        let delay = SKAction.wait(forDuration: 0.4)
         
         let platformProcesses = SKAction.repeatForever(SKAction.sequence([spawnPlatform, delay]))
         self.run(platformProcesses)
     }
     
-    func gameOver() {
+    private func gameOver() {
         platformDifficultyTimer.invalidate()
         speedDifficultyTimer.invalidate()
         self.isPaused = true
         gameVC.performSegue(withIdentifier: "gameOverSegue", sender: self)
     }
     
-    func playerDidCollideWithPlatform(player: SKSpriteNode, platform: Platform) { //Called when a player touches a platform
+    private func playerDidCollideWithPlatform(player: SKSpriteNode, platform: Platform) { //Called when a player touches a platform
+        var platformPoints = 0
         let playerPosition = player.position
         let platformPosition = platform.position
         let playerHeight = player.frame.height / 2
@@ -332,27 +354,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let priorYVelocity = player.physicsBody!.velocity.dy
                 player.physicsBody?.velocity.dy = 200
                 if let touchedPlatform = platform as? CloudPlatform {
-                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    platformPoints += touchedPlatform.hasBeenTouched()
                     touchedPlatform.removeFromParent()
                 }
                 else if let touchedPlatform = platform as? DummyPlatform {
                     player.physicsBody?.velocity.dy = priorYVelocity
-                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    platformPoints += touchedPlatform.hasBeenTouched()
                     touchedPlatform.removeFromParent()
                 }
                 else if let touchedPlatform = platform as? FragilePlatform {
-                    collectedPoints += touchedPlatform.hasBeenTouched()
+                    platformPoints += touchedPlatform.hasBeenTouched()
                     fragilePlatformsArray.append(touchedPlatform)
                 }
                 else {
-                    collectedPoints += platform.hasBeenTouched()
+                    platformPoints += platform.hasBeenTouched()
                 }
                 setScoreCounterText()
+                collectedPoints += platformPoints
+                if awardXpFromPlatform() {
+                    collectedXp += platformPoints
+                }
             }
         }
     }
     
-    func playerDidCollideWithPowerup(player: SKSpriteNode, powerup: Powerup) {
+    private func awardXpFromPlatform() -> Bool {
+        if Double(arc4random_uniform(101))/100 <= platformXpChance {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func playerDidCollideWithPowerup(player: SKSpriteNode, powerup: Powerup) {
         powerup.removeFromParent()
         switch(powerup.effect) {
         case .coin(let value), .coinBoost(let value):
@@ -363,6 +397,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             setScoreCounterText()
         case .xpBoost(let value):
             collectedXp += value
+            if Double(arc4random_uniform(101))/100 <= doubleXpChance {
+                collectedXp += value
+            }
         case .coinMod(let value):
             coinsMod += value
         case .scoreMod(let value):
@@ -381,7 +418,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
+    internal func didBegin(_ contact: SKPhysicsContact) {
         
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -435,7 +472,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func increasePlatformDifficulty() {
+    private func increasePlatformDifficulty() {
         var completed = false
         var easiestPlatform = 1
         while (completed == false) {
@@ -450,7 +487,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func increaseSizeDifficulty() {
+    private func increaseSizeDifficulty() {
         var completed = false
         var biggestSize = 4
         while (completed == false) {
@@ -465,7 +502,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func increaseDifficulty() {
+    @objc private func increaseDifficulty() {
         if arc4random_uniform(2) == 0 && platformDifficulty < maximumPlatformDifficulty {
             increasePlatformDifficulty()
         }
@@ -474,7 +511,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func increaseSpeed() {
+    @objc private func increaseSpeed() {
         speedModifier -= 0.4
     }
     

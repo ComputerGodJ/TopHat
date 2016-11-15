@@ -19,6 +19,8 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Stop device auto-locking due to no screen interaction
+        UIApplication.shared.isIdleTimerDisabled = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name:NSNotification.Name.UIApplicationWillResignActive, object: nil)
@@ -57,8 +59,15 @@ class GameViewController: UIViewController {
         let destinationVC = segue.destination
         if let postGameVC = destinationVC as? PostGameController {
             if let game = sender as? GameScene {
+                //Re-enable device auto-lock
+                UIApplication.shared.isIdleTimerDisabled = false
+                //Set variables
                 postGameVC.collectedCoins = game.collectedCoins
                 postGameVC.points = game.collectedPoints
+                postGameVC.collectedXp = game.collectedXp
+                postGameVC.scoreMod = game.scoreMod
+                postGameVC.coinMod = game.coinsMod
+                postGameVC.xpMod = game.xpMod
             }
         }
     }

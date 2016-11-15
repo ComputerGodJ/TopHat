@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aql-2K-hnh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C41b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aql-2K-hnh">
     <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -75,6 +75,9 @@
                                         <state key="normal" title="Perks">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ImB-7O-rOa" kind="show" id="W86-wO-BS9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="aLz-Bf-187">
                                         <rect key="frame" x="298.5" y="0.0" width="129.5" height="209"/>
@@ -127,6 +130,270 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aX0-ey-nE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1562.323943661972" y="69.375"/>
+        </scene>
+        <!--Perk Store Controller-->
+        <scene sceneID="FIp-Nt-Q57">
+            <objects>
+                <viewController id="ImB-7O-rOa" customClass="PerkStoreController" customModule="Top_Hat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vbu-VA-ELN"/>
+                        <viewControllerLayoutGuide type="bottom" id="LqT-bt-uiK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zak-f2-RP7">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snn-ao-2qv" customClass="TopBarView" customModule="Top_Hat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="35.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOR-w2-tz4" customClass="BaseBarView" customModule="Top_Hat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284.5" width="568" height="35.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cOR-w2-tz4" secondAttribute="height" multiplier="334:21" id="jJ9-A8-a30"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7p-eG-SUl">
+                                <rect key="frame" x="0.0" y="55.5" width="31" height="209"/>
+                                <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sCa-X2-pnU" kind="show" id="bpJ-nK-Ean"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="O3U-J0-C2Y">
+                                <rect key="frame" x="70" y="55.5" width="428" height="209"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kYf-8o-WQc">
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="41"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ckK-ii-luZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="41"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="gfH-A3-GLB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="gfH-A3-GLB" secondAttribute="height" multiplier="1:1" id="tj1-Zw-abG"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWQ-ES-Z2h" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                        <rect key="frame" x="51" y="0.0" width="41" height="41"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Buy">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="doubleCoins"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="buyTap:" destination="ImB-7O-rOa" eventType="touchUpInside" id="lmV-Tu-w9W"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vpQ-vU-q5C">
+                                                <rect key="frame" x="107" y="14.5" width="321" height="12"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-NY-Gh5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="2"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Double coins&gt;" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKD-WA-ppg">
+                                                        <rect key="frame" x="0.0" y="12" width="321" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0Bb-jr-gi1">
+                                        <rect key="frame" x="0.0" y="56" width="428" height="41"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fD6-mI-1P4">
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="41"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="MSY-oX-ExR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="MSY-oX-ExR" secondAttribute="height" multiplier="1:1" id="0Im-p0-j2i"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGH-0f-7G9" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                        <rect key="frame" x="51" y="0.0" width="41" height="41"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Buy">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="tripleCoins"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="buyTap:" destination="ImB-7O-rOa" eventType="touchUpInside" id="3Yu-4K-lFw"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qcN-Fc-vAv">
+                                                <rect key="frame" x="107" y="14.5" width="321" height="12"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZAv-Y6-v6J">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="2"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Triple coins&gt;" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-kd-sTG">
+                                                        <rect key="frame" x="0.0" y="12" width="321" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HoK-2J-cwi">
+                                        <rect key="frame" x="0.0" y="112" width="428" height="41"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="afp-J0-HSh">
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="41"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="AQ0-OL-fKe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="AQ0-OL-fKe" secondAttribute="height" multiplier="1:1" id="Th7-Bm-2Sc"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bll-mR-qKK" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                        <rect key="frame" x="51" y="0.0" width="41" height="41"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Buy">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="xpFromPlatform"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="buyTap:" destination="ImB-7O-rOa" eventType="touchUpInside" id="UHD-88-AvO"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-HK-NMg">
+                                                <rect key="frame" x="107" y="14.5" width="321" height="12"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cM8-He-bxk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="2"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Xp from platform&gt;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiN-nU-b1o">
+                                                        <rect key="frame" x="0.0" y="12" width="321" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ArF-YU-i2C">
+                                        <rect key="frame" x="0.0" y="168" width="428" height="41"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pdj-dn-v9W">
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="41"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coming soon" translatesAutoresizingMaskIntoConstraints="NO" id="RLS-dd-mLf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="RLS-dd-mLf" secondAttribute="height" multiplier="1:1" id="mh1-yA-Ijf"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMA-Dq-M9A" customClass="StoreButton" customModule="Top_Hat" customModuleProvider="target">
+                                                        <rect key="frame" x="51" y="0.0" width="41" height="41"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.39718000860000002" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Buy">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="xpIncrease"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="buyTap:" destination="ImB-7O-rOa" eventType="touchUpInside" id="ngt-6p-BTX"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9L3-yZ-Y9Q">
+                                                <rect key="frame" x="107" y="14.5" width="321" height="12"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RAH-z2-HRl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="2"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double xp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnO-3E-jzJ">
+                                                        <rect key="frame" x="0.0" y="12" width="321" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="HoK-2J-cwi" firstAttribute="leading" secondItem="O3U-J0-C2Y" secondAttribute="leading" id="Bjx-Nl-ell"/>
+                                    <constraint firstItem="kYf-8o-WQc" firstAttribute="leading" secondItem="O3U-J0-C2Y" secondAttribute="leading" id="Gh4-Jd-iZw"/>
+                                    <constraint firstItem="ArF-YU-i2C" firstAttribute="leading" secondItem="O3U-J0-C2Y" secondAttribute="leading" id="Kd0-8M-QPr"/>
+                                    <constraint firstItem="0Bb-jr-gi1" firstAttribute="leading" secondItem="O3U-J0-C2Y" secondAttribute="leading" id="fsq-6Y-OGa"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Bb-jr-gi1" secondAttribute="trailing" id="lcT-QA-SHn"/>
+                                    <constraint firstAttribute="trailing" secondItem="kYf-8o-WQc" secondAttribute="trailing" id="nKo-US-YDE"/>
+                                    <constraint firstAttribute="trailing" secondItem="HoK-2J-cwi" secondAttribute="trailing" id="sgO-Dm-pUv"/>
+                                    <constraint firstAttribute="trailing" secondItem="ArF-YU-i2C" secondAttribute="trailing" id="w7F-kq-Zfo"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84253753499999995" green="0.94174591100000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cOR-w2-tz4" firstAttribute="height" secondItem="snn-ao-2qv" secondAttribute="height" id="37i-4k-tcX"/>
+                            <constraint firstItem="N7p-eG-SUl" firstAttribute="top" secondItem="snn-ao-2qv" secondAttribute="bottom" constant="20" id="FPZ-MA-sRD"/>
+                            <constraint firstItem="snn-ao-2qv" firstAttribute="leading" secondItem="zak-f2-RP7" secondAttribute="leading" id="JO0-ei-AhJ"/>
+                            <constraint firstItem="cOR-w2-tz4" firstAttribute="top" secondItem="O3U-J0-C2Y" secondAttribute="bottom" constant="20" id="KiR-pJ-c6g"/>
+                            <constraint firstItem="N7p-eG-SUl" firstAttribute="leading" secondItem="zak-f2-RP7" secondAttribute="leading" id="PXl-OK-kDz"/>
+                            <constraint firstItem="cOR-w2-tz4" firstAttribute="leading" secondItem="zak-f2-RP7" secondAttribute="leading" id="Thi-CD-VK9"/>
+                            <constraint firstItem="O3U-J0-C2Y" firstAttribute="top" secondItem="snn-ao-2qv" secondAttribute="bottom" constant="20" id="Y8k-WB-ItK"/>
+                            <constraint firstItem="O3U-J0-C2Y" firstAttribute="leading" secondItem="zak-f2-RP7" secondAttribute="leadingMargin" constant="50" id="bxu-3G-Vwe"/>
+                            <constraint firstAttribute="trailing" secondItem="cOR-w2-tz4" secondAttribute="trailing" id="gLS-7e-3E6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O3U-J0-C2Y" secondAttribute="trailing" constant="50" id="q8c-Gu-S8t"/>
+                            <constraint firstItem="cOR-w2-tz4" firstAttribute="top" secondItem="N7p-eG-SUl" secondAttribute="bottom" constant="20" id="r3B-sh-OX6"/>
+                            <constraint firstItem="snn-ao-2qv" firstAttribute="top" secondItem="zak-f2-RP7" secondAttribute="top" id="v4R-jA-8fV"/>
+                            <constraint firstAttribute="bottom" secondItem="cOR-w2-tz4" secondAttribute="bottom" id="vi2-Tb-FWn"/>
+                            <constraint firstAttribute="trailing" secondItem="snn-ao-2qv" secondAttribute="trailing" id="zZi-am-Yab"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doubleCoinBar" destination="jMA-NY-Gh5" id="eBp-b1-8tz"/>
+                        <outlet property="doubleCoinButton" destination="WWQ-ES-Z2h" id="Ss7-gT-kDx"/>
+                        <outlet property="doubleCoinLabel" destination="OKD-WA-ppg" id="WKt-cW-wpc"/>
+                        <outlet property="doubleXpBar" destination="RAH-z2-HRl" id="VKN-RG-TLl"/>
+                        <outlet property="doubleXpButton" destination="jMA-Dq-M9A" id="rAI-xr-LfZ"/>
+                        <outlet property="doubleXpLabel" destination="nnO-3E-jzJ" id="EIf-fX-CGr"/>
+                        <outlet property="platformXpBar" destination="cM8-He-bxk" id="Iao-Pi-vYj"/>
+                        <outlet property="platformXpButton" destination="bll-mR-qKK" id="Ehu-VD-mIZ"/>
+                        <outlet property="platformXpLabel" destination="hiN-nU-b1o" id="5tt-0y-lDI"/>
+                        <outlet property="topBar" destination="snn-ao-2qv" id="NFB-op-qJr"/>
+                        <outlet property="tripleCoinBar" destination="ZAv-Y6-v6J" id="yWp-Wh-ohe"/>
+                        <outlet property="tripleCoinButton" destination="pGH-0f-7G9" id="13B-ON-z0D"/>
+                        <outlet property="tripleCoinLabel" destination="eSy-kd-sTG" id="CyY-Nl-fjZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecl-3R-6ai" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1814.7887323943662" y="1156.875"/>
         </scene>
         <!--Hat Store Controller-->
         <scene sceneID="mOZ-AP-ciM">
@@ -189,6 +456,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Giraffe hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Giraffe hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="lbn-ql-S54"/>
@@ -203,6 +471,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Giraffe hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Giraffe hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="wPu-Xo-Hvm"/>
@@ -233,6 +502,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Military hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Military hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="5d8-m6-qBU"/>
@@ -247,6 +517,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Military hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Military hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="qNz-fd-YON"/>
@@ -277,6 +548,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Party hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Party hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="0hf-i7-kHs"/>
@@ -291,6 +563,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Party hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Party hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="JLl-Hb-MyX"/>
@@ -326,6 +599,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Top hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="7E2-FF-FD1"/>
@@ -340,6 +614,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Top hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Top hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="d1j-N4-wCc"/>
@@ -370,6 +645,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Vector hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Vector hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="LEj-15-ZjI"/>
@@ -384,6 +660,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Vector hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Vector hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="gTL-Xf-N9S"/>
@@ -414,6 +691,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Wizard hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Wizard hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="br7-ss-xbG"/>
@@ -428,6 +706,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Wizard hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Wizard hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="YDW-iR-CGG"/>
@@ -463,6 +742,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Default hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Default hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="infoTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="W8H-48-hwZ"/>
@@ -477,6 +757,7 @@
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="hatName" value="Default hat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonData" value="Default hat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="buyTap:" destination="agk-ZL-G7p" eventType="touchUpInside" id="W7o-iK-sZE"/>
@@ -609,7 +890,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Y7-NR-OFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1617.2535211267607" y="1031.25"/>
+            <point key="canvasLocation" x="1072" y="1193"/>
         </scene>
         <!--Post Game Controller-->
         <scene sceneID="Zyz-H9-Nx0">
@@ -623,8 +904,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coins collected: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REI-CI-Qvh">
-                                <rect key="frame" x="138" y="133" width="285" height="56"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coins awarded: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REI-CI-Qvh">
+                                <rect key="frame" x="142" y="114" width="285" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -650,7 +931,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points earned: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3Y-jU-3y3">
-                                <rect key="frame" x="138" y="90" width="285" height="54"/>
+                                <rect key="frame" x="142" y="71" width="285" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Xp awarded: ###" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp7-om-0jF">
+                                <rect key="frame" x="91" y="159" width="378" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -664,11 +952,12 @@
                         <outlet property="mainMenuButton" destination="SBE-Be-c4I" id="Id4-Yn-vax"/>
                         <outlet property="scoreLabel" destination="H3Y-jU-3y3" id="c9G-7F-Th3"/>
                         <outlet property="topTextLabel" destination="Gbf-NS-QNq" id="Hfj-bE-y7k"/>
+                        <outlet property="xpLabel" destination="Zp7-om-0jF" id="eBM-5H-cJF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPV-qa-7le" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113" y="-767"/>
+            <point key="canvasLocation" x="2112.676056338028" y="-768.75"/>
         </scene>
         <!--Launch Screen Controller-->
         <scene sceneID="UNm-Gz-ESn">
@@ -934,7 +1223,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ns5-nc-vJa"/>
-        <segue reference="UYj-iR-Jif"/>
+        <segue reference="aJq-OF-2ok"/>
         <segue reference="7pD-sa-5GQ"/>
     </inferredMetricsTieBreakers>
 </document>

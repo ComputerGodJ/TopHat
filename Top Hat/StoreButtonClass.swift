@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 class StoreButton: UIButton {
-    @IBInspectable var hatName: String = ""
+    @IBInspectable var buttonData: String = ""
 }
