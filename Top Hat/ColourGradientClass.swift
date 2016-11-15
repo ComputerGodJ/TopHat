@@ -1,5 +1,5 @@
 //
-//  Shared Code.swift
+//  ColourGradientClass.swift
 //  Top Hat
 //
 //  Created by Jonathan Robinson on 11/10/2016.

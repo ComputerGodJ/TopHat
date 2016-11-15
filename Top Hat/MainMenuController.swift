@@ -15,15 +15,11 @@ class MainMenuController: UIViewController {
         
         let deviceInfo = UIDevice() //Used to identify device type, for font purposes
         
-        //Setup gradient background
+        //Set up gradient background
         let colourObject = ColourGradient()
         let colourGradient = colourObject.gradient
         colourGradient.frame = view.frame
         view.layer.insertSublayer(colourGradient, at: 0)
-        
-        //Setup colours of top and base bars
-        topBar.backgroundColor = topBar.bgColour
-        baseBar.backgroundColor = topBar.bgColour
         
         //Font handling code
         achievementButton.titleLabel?.adjustsFontSizeToFitWidth = true //Fixes text for iphone 4S

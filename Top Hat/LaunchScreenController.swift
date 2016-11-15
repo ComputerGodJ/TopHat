@@ -12,6 +12,10 @@ class LaunchScreenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        var databaseHandler = DatabaseInitialiser()
+        print("Checking database")
+        databaseHandler.checkDatabase()
+        print("Database checking complete")
         
     }
 
